@@ -8,6 +8,24 @@ import NavBar from "./components/NavBar"
 
 function App() {
   const [members, setMembers] = useState([])
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleNameChange = event => {
+    setName(event.target.value);
+  };
+
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(name);
+    console.log(password);
+  };
+
+
 
   useEffect(()=>{
     setMembers(data)

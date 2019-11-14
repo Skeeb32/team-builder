@@ -12,6 +12,26 @@ const Card = styled.div`
   margin: 10px auto;
 `;
 
+const FormContent = styled.div`
+
+justify-content:space-between;
+@media only screen 
+  and (min-device-width: 500px) 
+  and (max-device-width: 1400px)  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+`;
 
 const Form = props=>{
 const [member, setMember] = useState({
@@ -27,28 +47,35 @@ const changeHandler = e =>{
 
 const submitHandler = e =>{
     e.preventDefault()
-    const newMate = {
-        ...member,
-        id: Date.now(),
-        image: 'http://pngimg.com/uploads/wolverine/wolverine_PNG59.png'
-    }
-    props.addTeamMate(newMate)
-    setMember(newMate)
+
+    props.addTeamMate(member)
+    setMember(   
+    {name: '',
+    image: '',
+    email: '',
+    role: ''})
 }
+
+
     return (
         <Card>
         <div>
             <form onSubmit={submitHandler}>
-                <label htmlFor="name">Member's Name</label>
+            <FormContent>
+                <label style={{padding: "0 7px"}} htmlFor="name">Member's Name:</label>
                 <input onChange={changeHandler} id="name" name="name" value={member.name} type="text" placeholder="Name"></input>
                
-                <label htmlFor="email">Member's Email</label>
+                <label style={{padding: "0 7px"}} htmlFor="email">Member's Email:</label>
                 <input onChange={changeHandler} id="email" name="email" value={member.email} type="text" placeholder="Email"></input>
 
-                <label htmlFor="role">Member's Role</label>
+                <label style={{padding: "0 7px"}} htmlFor="role">Member's Role:</label>
                 <input onChange={changeHandler} id="role" name="role" value={member.role} type="text" placeholder="Role"></input>
+
+                <label style={{padding: "0 7px"}} htmlFor="role">Member's Image:</label>
+                <input onChange={changeHandler} id="image" name="image" value={member.image} type="text" placeholder="Image"></input>
                
-                <button type="submit">Add</button>
+                <button style={{margin: "0 7px"}} type="submit">Add Member</button>
+                </FormContent>
             </form>
         </div></Card>
     )
